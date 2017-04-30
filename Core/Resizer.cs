@@ -59,7 +59,7 @@ namespace Core
         {
             if (Directory.Exists(path))
             {
-                foreach (string file in Directory.GetFiles(path, "*.jpg"))
+                foreach (string file in Directory.GetFiles(path, "*.png"))
                 {
                     using (Bitmap image = new Bitmap(Image.FromFile(file)))
                     {
@@ -95,17 +95,22 @@ namespace Core
         {
             if (Directory.Exists(path))
             {
-                foreach (string file in Directory.GetFiles(path, "*.jpg"))
+                foreach (string file in Directory.GetFiles(path, "*.png"))
                 {
                     using (Bitmap image = new Bitmap(Image.FromFile(file)))
                     {
-                        Bitmap newImage = new Bitmap(ReturnNextPO2(image.Width), ReturnNextPO2(image.Height));
+                        int po2Width = ReturnNextPO2(image.Width);
+                        int po2Height = ReturnNextPO2(image.Height);
+                        int posX = GetNewPosition(po2Width, image.Width);
+                        int posY = GetNewPosition(po2Height, image.Height);
+
+                        Bitmap newImage = new Bitmap(po2Width, po2Height);
                         using (Graphics graphics = Graphics.FromImage(newImage))
                         {
                             graphics.CompositingQuality = CompositingQuality.HighQuality;
                             graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
                             graphics.CompositingMode = CompositingMode.SourceCopy;
-                            graphics.DrawImage(image, 0, 0, image.Width, image.Height);
+                            graphics.DrawImage(image, posX, posY, image.Width, image.Height);
 
                             var qualityParamId = Encoder.Quality;
                             var encoderParameters = new EncoderParameters(1);
@@ -127,9 +132,9 @@ namespace Core
             {
                 if (CheckInterval(value, GetPO2Value(i), GetPO2Value(i + 1)))
                 {
-                    if (value <= GetPO2Value(i) + 20)
-                        return GetPO2Value(i);
-                    else
+                    //if (value <= GetPO2Value(i) + 20)  //needs to be improved
+                    //    return GetPO2Value(i);
+                    //else
                         return GetPO2Value(i + 1);
                 }
             }
@@ -144,6 +149,11 @@ namespace Core
         int GetPO2Value(int i)
         {
             return (int)Math.Pow(2, i);
+        }
+
+        int GetNewPosition(int valuePO2, int originalRes)
+        {
+            return (valuePO2 - originalRes) / 2;
         }
     }
 }

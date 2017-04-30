@@ -4,3 +4,9 @@ D:\projekti\MImage\Core\bin\Debug\Core.pdb
 D:\projekti\MImage\Core\obj\Debug\Core.csprojResolveAssemblyReference.cache
 D:\projekti\MImage\Core\obj\Debug\Core.exe
 D:\projekti\MImage\Core\obj\Debug\Core.pdb
+C:\Users\steva\Desktop\MImage\Core\bin\Debug\Core.exe.config
+C:\Users\steva\Desktop\MImage\Core\bin\Debug\Core.exe
+C:\Users\steva\Desktop\MImage\Core\bin\Debug\Core.pdb
+C:\Users\steva\Desktop\MImage\Core\obj\Debug\Core.csprojResolveAssemblyReference.cache
+C:\Users\steva\Desktop\MImage\Core\obj\Debug\Core.exe
+C:\Users\steva\Desktop\MImage\Core\obj\Debug\Core.pdb
