@@ -9,53 +9,14 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public enum ResizeMode
-    {
-        ANDROID,
-        IOS
-    }
-
     public class Resizer
     {
-        const string imgPath = "img/original";
-
         public Resizer()
         {
 
         }
 
-        public Resizer(ResizeMode resizeMode)
-        {
-            switch (resizeMode)
-            {
-                case ResizeMode.ANDROID:
-                    ResizeToDivBy4(imgPath);
-                    break;
-                case ResizeMode.IOS:
-                    ResizeToDivBy2AndSqrt(imgPath);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        public void GetTerminalInput()
-        {
-            switch (Console.ReadLine())
-            {
-                case "android":
-                    new Resizer(ResizeMode.ANDROID);
-                    return;
-                case "ios":
-                    new Resizer(ResizeMode.IOS);
-                    return;
-            }
-            Console.WriteLine("Wrong input!");
-            GetTerminalInput();
-        }
-
-
-        void ResizeToDivBy4(string path)
+        public void ResizeToDivBy4(string path)
         {
             if (Directory.Exists(path))
             {
@@ -66,17 +27,9 @@ namespace Core
                         int imgH = image.Height;
                         int imgW = image.Width;
 
-                        if (imgH % 4 != 0)
+                        while (imgH % 4 != 0)
                             imgH--;
-                        if (imgH % 4 != 0)
-                            imgH--;
-                        if (imgH % 4 != 0)
-                            imgH--;
-                        if (imgW % 4 != 0)
-                            imgW--;
-                        if (imgW % 4 != 0)
-                            imgW--;
-                        if (imgW % 4 != 0)
+                        while (imgW % 4 != 0)
                             imgW--;
 
                         if (imgH != image.Height || imgW != image.Width)
@@ -91,7 +44,7 @@ namespace Core
             }
         }
 
-        void ResizeToDivBy2AndSqrt(string path)
+        public void ResizeToDivBy2AndSqrt(string path)
         {
             if (Directory.Exists(path))
             {

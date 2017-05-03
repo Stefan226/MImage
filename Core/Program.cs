@@ -9,11 +9,6 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public enum RESOLUTION
-    {
-
-    }
-
     class Program
     {
         const string imgPath = "img/original";
@@ -22,14 +17,30 @@ namespace Core
         {
             Console.WriteLine("type \"android\" or \"ios\" to resize for the right platform");
 
-            new Resizer().GetTerminalInput();
+            GetTerminalInput();
 
             Console.WriteLine("Resizing, please wait...");
             Console.WriteLine("Resizing done! Press enter to close the program.");
             Console.ReadLine();
         }
 
+        static void GetTerminalInput()
+        {
+            switch (Console.ReadLine())
+            {
+                case "android":
+                    new Resizer().ResizeToDivBy4(imgPath);
+                    return;
+                case "ios":
+                    new Resizer().ResizeToDivBy2AndSqrt(imgPath);
+                    return;
+                case "grayscale":
+                    new ColorConverter().ConvertToGrayScale(imgPath);
+                    break;
+            }
+            Console.WriteLine("Wrong input!");
+            GetTerminalInput();
+        }
 
-  
     }
 }
