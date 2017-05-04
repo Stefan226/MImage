@@ -36,7 +36,7 @@ namespace Core
                     return;
                 case "grayscale":
                     new ColorConverter().ConvertToGrayScale(imgPath);
-                    break;
+                    return;
             }
             Console.WriteLine("Wrong input!");
             GetTerminalInput();
